@@ -67,7 +67,7 @@ if($id == '' || $token == ''){
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>La Fortuneta</title>
+    <title>La Fortuneta deportes</title>
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" 
     rel="stylesheet"
@@ -81,7 +81,7 @@ if($id == '' || $token == ''){
         <div class="navbar navbar-expand-lg navbar-dark bg-dark">
             <div class="container">
                 <a href="#" class="navbar-brand d-flex align-items-center">
-                    <strong>La Fortuneta</strong>
+                    <strong>La Fortuneta deportes</strong>
                 </a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarHeader"
                     aria-controls="navbarHeader" aria-expanded="false" aria-label="Toggle navigation">
@@ -159,7 +159,7 @@ if($id == '' || $token == ''){
                     <div class="d-grid gap-3 col-10 mx-auto">
                         <button class="btn btn-primary" type="button">Comprar ahora</button>
                         <button class="btn btn-outline-primary" type="button" 
-                        onclick="addProducto(<?php echo $id; ?> '<?php echo $token_tmp; ?>')">Agregar al carrito</button>
+                        onclick="addProducto(<?php echo $id; ?>,'<?php echo $token_tmp; ?>')">Agregar al carrito</button>
                     </div>
                
                 </div>
