@@ -53,7 +53,7 @@ $resultado = $sql->fetchAll(PDO::FETCH_ASSOC);
                             <a href="#" class="nav-link ">Contacto</a>
                         </li>
                     </ul>
-                    <a href="carrito.php" class="btn btn-primary">
+                    <a href="checkout.php" class="btn btn-primary">
                         Carrito <span id="num_cart" class="badge bg-secondary"><?php echo $num_cart; ?></span>
                     </a>
                 </div>
@@ -84,7 +84,7 @@ $resultado = $sql->fetchAll(PDO::FETCH_ASSOC);
                                 <div class="btn-group">
                                     <a href="details.php?id=<?php echo $row['id']; ?>&token=<?php echo hash_hmac('sha1', $row['id'], KEY_TOKEN); ?>" class="btn btn-primary">Detalles</a>
                                 </div>
-                                <button class="btn btn-outline-success" type="button" 
+                                <button class="btn btn-success" type="button" 
                                 onclick="addProducto(<?php echo $row['id']; ?> '<?php echo hash_hmac('sha1', $row['id'], KEY_TOKEN); ?>')">Agregar</button>
                             </div>
                         </div>

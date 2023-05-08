@@ -93,6 +93,7 @@ if($productos != null){
                                 $nombre = $producto['nombre'];
                                 $precio = $producto['precio'];
                                 $descuento = $producto['descuento'];
+                                $cantidad = $producto['cantidad'];
                                 $precio_desc = $precio - (($precio * $descuento) / 100);
                                 $subtotal = $cantidad * $precio_desc;
                                 $total += $subtotal;
@@ -112,12 +113,24 @@ if($productos != null){
                             data-bs-toggle="modal" data-bs-target="eliminaModal">Eliminar</a></td>
                         </tr>
                         <?php } ?>
+
+                        <tr>
+                            <td colspan="3"></td>
+                            <td colspan="2">
+                                <p class="h3" id="total"><?php echo MONEDA . number_format($total, 2, '.', ','); ?></p>
+                            </td></tr>
                     </tbody>
+                    <?php } ?>
                 </table>
+            </div>
+            <div class="row">
+                <div class="col-md-5 offset-md-7 d-grid gap-2">
+                    <button class="btn btn-primary btn-lg">Realizar Pago</button>
+                </div>
             </div>
             </div>
     </main>
-    <footer class="footer mt-auto py-2 bg-dark">
+    <!--<footer class="footer mt-auto py-2 bg-dark">
         <div class="container">
             <p class="text-center">
                 <span class="text-white">"La Fortuneta deportes © 2023"</span>
@@ -130,7 +143,7 @@ if($productos != null){
         crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe"
-        crossorigin="anonymous"></script>
+        crossorigin="anonymous"></script>-->
 
 <script>
         function addProducto(id, token){
