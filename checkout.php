@@ -70,6 +70,7 @@ if($productos != null){
         </div>
     </header>
 
+    <!--Contenido-->
     <main>
         <div class="container">
             <div class="table-responsive">
@@ -103,14 +104,15 @@ if($productos != null){
                             <td><?php echo MONEDA . number_format($precio_desc,2, '.', ','); ?></td>
                             <td>
                                 <input type="number" min="1" max="10" step="1" value="<?php echo $cantidad ?>"
-                            size="5" id="cantidad_<?php echo $_id; ?>" onchange="">                            </td>
+                            size="5" id="cantidad_<?php echo $_id; ?>" onchange="actualizaCantidad(this.value, <?php echo $_id; ?>)">                            </td>
                             <td>
                             <td>
                                 <div id="subtotal_<?php echo $_id; ?>" name="subtotal[]"><?php echo MONEDA . 
                                 number_format($subtotal,2, '.', ','); ?></div>
                             </td>
-                            <td><a href="#" id="eliminar" class="btn btn-warning btn-sm" data-bs-id="<?php echo $_id; ?>" 
-                            data-bs-toggle="modal" data-bs-target="eliminaModal">Eliminar</a></td>
+                            <td><a id="eliminar" class="btn btn-warning btn-sm" data-bs-id="<?php echo $_id; ?>" 
+                            data-bs-toggle="modal" data-bs-target="#eliminaModal">Eliminar</a>
+                        </td>
                         </tr>
                         <?php } ?>
 
@@ -130,6 +132,27 @@ if($productos != null){
             </div>
             </div>
     </main>
+
+    <!-- Modal -->
+<div class="modal fade" id="eliminaModal" tabindex="-1" aria-labelledby="eliminaModalLabel" 
+aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="eliminaModalLabel">Modal title</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        ...
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>
+
     <!--<footer class="footer mt-auto py-2 bg-dark">
         <div class="container">
             <p class="text-center">
@@ -146,11 +169,12 @@ if($productos != null){
         crossorigin="anonymous"></script>-->
 
 <script>
-        function addProducto(id, token){
-            let url = 'clases/carrito.php';
+        function actualizaCantidad(cantidad, id){
+            let url = 'clases/actualizar_carrito.php';
             let formData = new FormData();
+            formData.append('action', 'agregar');
             formData.append('id', id);
-            formData.append('token', token);
+            formData.append('cantidad', cantidad);
 
             fetch(url, {
                     method: 'POST',
@@ -159,9 +183,21 @@ if($productos != null){
                 }).then(response => response.json())
                 .then(data => {
                     if(data.ok){
-                        let elemento = document.getElementById("num_cart")
-                        elemento.innerHTML = data.numero;
-                }
+
+                        let divsubtotal = document.getElementById('subtotal_' + id)
+                        divsubtotal.innerHTML = data.sub
+
+                        let total = 0.00
+                        let list = document.getElementsByName('subtotal[]')
+
+                        for(let i = 0; i < list.length; i++){
+                            total += parseFloat(list[i].innerHTML.replace(/[$,]/g, ''))
+                        }
+                        total = new Intl.NumberFormat('en-US', {
+                            minimunFractionDigits: 2
+                        }).format(total)
+                        document.getElementById('total').innerHTML = '<?php echo MONEDA; ?>'+ total
+                    }
             })
         }
     </script>

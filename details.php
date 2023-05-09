@@ -30,7 +30,7 @@ if($id == '' || $token == ''){
             $precio = $row['precio'];
             $descuento = $row['descuento'];
             $precio_desc = $precio - (($precio * $descuento) / 100);
-            $dir_images = 'images/productos/'.$id.'/';
+            $dir_images = 'images/productos/' . $id . '/';
             
             $rutaImg = $dir_images . 'principal.jpg';
 
